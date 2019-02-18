@@ -15,6 +15,16 @@ public class StdoutProducer extends AbstractProducer {
 		if ( output != null && r.shouldOutput(outputConfig) )
 			System.out.println(output);
 
+
+		if (Math.random() > 0.5)
+		{
+			failedMessageMeter.mark();
+			failedMessageCount.inc();
+		} else {
+			succeededMessageMeter.mark();
+			succeededMessageCount.inc();
+		}
+
 		this.context.setPosition(r);
 	}
 }

@@ -41,7 +41,25 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <devtools-piedpiper.version>1.5.1</devtools-piedpiper.version>
+    <twilio-coreutil-version>8.5.1</twilio-coreutil-version>
+    <twilio-account-service-domain-version>2.6.19</twilio-account-service-domain-version>
+    <twilio-account-service-client.version>2.7.0</twilio-account-service-client.version>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>twilio.nexus</id>
+      <url>http://nexus.corp.twilio.com/content/groups/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
   <profiles>
     <profile>
@@ -110,6 +128,73 @@
   </profiles>
 
   <dependencies>
+
+    <dependency>
+      <groupId>com.twilio</groupId>
+      <artifactId>piedpiper-client</artifactId>
+      <version>${devtools-piedpiper.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-all</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.twilio</groupId>
+      <artifactId>piedpiper-protocol</artifactId>
+      <version>${devtools-piedpiper.version}</version>
+    </dependency>
+
+
+
+    <dependency>
+      <groupId>com.twilio</groupId>
+      <artifactId>coreutil</artifactId>
+      <version>${twilio-coreutil-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.twilio</groupId>
+      <artifactId>account-service-domain</artifactId>
+      <version>${twilio-account-service-domain-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.twilio</groupId>
+      <artifactId>coreutil-sids</artifactId>
+      <version>${twilio-coreutil-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.twilio</groupId>
+      <artifactId>coreutil-java8</artifactId>
+      <version>${twilio-coreutil-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.twilio</groupId>
+      <artifactId>account-service-client</artifactId>
+      <version>${twilio-account-service-client.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.twilio</groupId>
+      <artifactId>core-service-client</artifactId>
+      <version>4.6.6</version>
+    </dependency>
+    <dependency>
+      <groupId>com.twilio</groupId>
+      <artifactId>core-service-entity</artifactId>
+      <version>4.6.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.twilio</groupId>
+      <artifactId>platformlib-core</artifactId>
+      <version>4.1.9</version>
+    </dependency>
+
+
+
+
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-core</artifactId>
@@ -204,11 +289,11 @@
       <artifactId>jackson-core</artifactId>
       <version>2.8.11</version>
     </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.8.11.2</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+      <!--<artifactId>jackson-databind</artifactId>-->
+      <!--<version>2.8.11.2</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>com.vividsolutions</groupId>
       <artifactId>jts</artifactId>
@@ -304,6 +389,9 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-gpg-plugin</artifactId>
         <version>1.5</version>
+	<configuration>
+		<skip>true</skip>
+	</configuration>
         <executions>
           <execution>
             <id>sign-artifacts</id>
